@@ -1,0 +1,43 @@
+﻿@model AuthenticationTest.Web.Models.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.UserName)</td>
+                <td>@Html.TextBoxFor(m => m.UserName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Password)</td>
+                <td>@Html.PasswordFor(m => m.Password)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.RememberMe)</td>
+                <td>@Html.CheckBoxFor(m => m.RememberMe)</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Login" /></td>
+            </tr>
+        </table>
+    }
+    @Html.ValidationSummary()
+
+    <br /><br />
+    @Html.ActionLink("Register a new account !","Register","Account")
+
+</body>
+</html>
